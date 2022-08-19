@@ -65,6 +65,13 @@ body {
     width:10rem;
     height:8.35rem;
 }
+.place-holder {
+    background-color: rgb(69,69,69);
+    border:none;
+    width:10rem;
+    height:8.35rem;
+    border-radius: 30px;
+}
 .buttons:hover {
     background-color: rgba(10,10,10,0.5);
     transform: 1s;

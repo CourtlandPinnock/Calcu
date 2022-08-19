@@ -2,7 +2,6 @@
 let currentOperator = '';
 let displayValue = "0";
 let displayValue0 = 0;
-let tot = 0;
 
 console.table(displayValue);
 
@@ -25,7 +24,8 @@ function populate() {
     const num8 = document.getElementById("num8");
     const num9 = document.getElementById("num9");
     const numDivide = document.getElementById("numDivide");
-    const numDel = document.getElementById("delete");
+    const numDel = document.getElementById("numDel");
+    const numCancel = document.getElementById("numCancel");
     display.textContent = '0'
     dot.addEventListener("click", (e) => {
         if (display.textContent === '0') {
@@ -124,7 +124,7 @@ function populate() {
         console.log("DisplayValue:", displayValue);
     })
     num7.addEventListener("click", (e) => {
-        if (display.textContent === '0') {
+        if (display.textContent == '0') {
             display.textContent = "";
             display.textContent = display.textContent + '7';
             displayValue = 0;
@@ -173,8 +173,40 @@ function populate() {
             equalsLock = 1;
         }
     })
-    
-    
+    numDel.addEventListener("click", (e) => {
+        display.textContent = display.textContent.slice(0, -1);
+        
+    })
+    numMinus.addEventListener("click", (e) => {
+        currentOperator = "subtract";
+        displayValue0 = displayValue;
+        displayValue = "0";
+        display.textContent = displayValue;
+        equalsLock = 0;
+
+    })
+    numMultiply.addEventListener("click", (e) => {
+        currentOperator = "multiply";
+        displayValue0 = displayValue;
+        displayValue = "0";
+        display.textContent = displayValue;
+        equalsLock = 0;
+    })
+    numDivide.addEventListener("click", (e) => {
+        currentOperator = "divide";
+        displayValue0 = displayValue;
+        displayValue = "0";
+        display.textContent = displayValue;
+        equalsLock = 0;
+    })
+    numCancel.addEventListener("click", (e) => {
+        currentOperator = "none";
+        displayValue = 0;
+        displayValue0 = 0;
+        display.textContent = displayValue;
+        equalsLock = 0;
+        
+    })
 }   
 
 function sum() {
@@ -203,5 +235,14 @@ function operate() {
     if (arguments[2] === "sum") {
         displayValue = sum(first,second);
     }
+    if (arguments[2] === "subtract") {
+        displayValue = subtract(first, second);
+    }
+    if (arguments[2] === "multiply") {
+        displayValue = multiply(first, second); 
+    }
+    if (arguments[2] === "divide") {
+        displayValue = divide(first, second);
+    } 
 }
 populate();
